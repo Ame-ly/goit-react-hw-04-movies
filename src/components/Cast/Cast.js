@@ -8,10 +8,16 @@ class Cast extends Component {
       'https://cdn.pixabay.com/photo/2017/04/15/04/36/incognito-2231825_960_720.png',
     casts: null,
   };
-  componentDidMount() {
+  async componentDidMount() {
     const movieId = this.props.id;
 
-    Api.fetchMoviesCastById(movieId).then(r => this.setState({ casts: r }));
+    await Api.fetchMoviesCastById(movieId).then(r => this.setState({ casts: r }));
+    // if (this.state.casts) {
+    //   window.scrollTo({
+    //     top: document.documentElement.scrollHeight,
+    //     behavior: 'smooth',
+    //   });
+    // }
   }
 
   render() {

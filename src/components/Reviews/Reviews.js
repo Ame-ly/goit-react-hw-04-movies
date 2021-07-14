@@ -10,10 +10,9 @@ class Reviews extends Component {
     const { id } = this.props;
     const movieId = id;
     Api.fetchMoviesReviewById(movieId).then(r => {
-      console.log(r)
+      console.log(r);
       this.setState({ reviews: r });
     });
-    ;
   }
 
   render() {

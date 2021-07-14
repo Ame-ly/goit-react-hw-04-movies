@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
+import Loader from '../../components/Loader/Loader';
 import Api from '../../API/themoviedb';
-import InfoNav from '../../components/InfoNav'
-
-
-// import { NavLink, Route } from 'react-router-dom';
+import InfoNav from '../../components/InfoNav';
 import MovieInfo from '../../components/MovieInfo';
 
 import routes from '../../routes';
-
-
 
 class moviesDetails extends Component {
   state = {
@@ -20,7 +16,6 @@ class moviesDetails extends Component {
     release_date: null,
     vote_average: null,
     genres: null,
-
   };
 
   componentDidMount() {
@@ -38,7 +33,6 @@ class moviesDetails extends Component {
   };
 
   render() {
-    // const movieId = Number(this.props.match.params.moviesId);
     const {
       base_url,
       original_title,
@@ -48,27 +42,29 @@ class moviesDetails extends Component {
       vote_average,
       release_date,
     } = this.state;
-    // const { match } = this.props;
-
-    // const { from } = this?.props?.location?.state || {
-    //   from: { pathname: '/' },
-    // };
 
     return (
       <>
         <button type="button" onClick={this.onBackBtnClick}>
           Back
         </button>
-        <MovieInfo
-          baseUrl={base_url}
-          title={original_title}
-          url={poster_path}
-          descr={overview}
-          genres={genres}
-          vote={vote_average}
-          release_date={release_date}
-        />
-        <InfoNav />
+        {this.state.poster_path ? (
+          <>
+            <MovieInfo
+              baseUrl={base_url}
+              title={original_title}
+              url={poster_path}
+              descr={overview}
+              genres={genres}
+              vote={vote_average}
+              release_date={release_date}
+            />
+
+            <InfoNav />
+          </>
+        ) : (
+          <Loader />
+        )}
       </>
     );
   }
