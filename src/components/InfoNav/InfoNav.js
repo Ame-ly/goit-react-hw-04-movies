@@ -44,7 +44,7 @@ const InfoNav = ({ match, location }) => {
                     render={() => <Cast id={movieId} />}
                 />
                 <Route
-                    path={`${match.path}/review`}
+                    path={`${match.path}/reviews`}
                     render={() => <Reviews id={movieId} />}
                 />
             </Suspense>
